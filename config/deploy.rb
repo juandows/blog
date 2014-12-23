@@ -4,7 +4,7 @@ set :repository,  "https://github.com/juandows/blog.git"
 # set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
-set :scp, :git
+set :scm, :git
 set :deploy_via,            :rsync_with_remote_cache
 set :user,                  "juande"
 set :use_sudo,              false
@@ -12,7 +12,10 @@ set :use_sudo,              false
 set :default_shell,         :bash
 
 set :shared_files,          ["app/config/parameters.yml"]
-set :shared_children,        ["web/uploads"]
+set :shared_children,        ["web/uploads", "app/logs", "vendor", "app/sessions"]
+
+set :use_composer,              true
+set :update_vendors,            true
 
 set :writable_dirs,             ["app/cache", "app/logs"]
 set :webserver_user,            "www-data"
